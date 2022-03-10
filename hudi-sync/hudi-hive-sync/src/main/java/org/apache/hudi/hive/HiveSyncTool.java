@@ -125,6 +125,9 @@ public class HiveSyncTool extends AbstractSyncTool {
     }
   }
 
+  /**
+   * 同步
+   */
   protected void doSync() {
     switch (hoodieHiveClient.getTableType()) {
       case COPY_ON_WRITE:
@@ -356,6 +359,9 @@ public class HiveSyncTool extends AbstractSyncTool {
     FileSystem fs = FSUtils.getFs(cfg.basePath, new Configuration());
     HiveConf hiveConf = new HiveConf();
     hiveConf.addResource(fs.getConf());
+    /**
+     * 同步表
+     */
     new HiveSyncTool(cfg, hiveConf, fs).syncHoodieTable();
   }
 }
